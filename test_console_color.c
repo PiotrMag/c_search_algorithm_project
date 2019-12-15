@@ -26,7 +26,7 @@ int main()
         printf("NR.%2d\n", i);
     }
 
-    for (i = 0; i < 255; i++) 
+    for (i = 0; i < 300; i++) 
     {
         printf("NR.%3d = %2c\n", i, i);
     }
