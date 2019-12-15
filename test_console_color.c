@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <windows.h>
 
+// some code taken from:
+// https://stackoverflow.com/questions/20725769/change-background-color-of-console-output-in-c-and-c
+
 int main()
 {
     unsigned char b, f;
