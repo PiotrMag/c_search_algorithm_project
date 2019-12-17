@@ -2,6 +2,8 @@
 #include <windows.h>
 #include "characters.h"
 #include "console_colors.h"
+#include "console_cursor.h"
+#include "console.h"
 // #include "colors.h"
 
 // some code taken from:
@@ -38,6 +40,8 @@ int main()
         printf("NR.%3d = %2c\n", i, i);
     }
 
+    HideConsoleCursor(GetConsole());
+
     printf("%c\n", BLACK_BOX);
     printf("%c\n", DARK_GRAY_BOX);
     printf("%c\n", GRAY_BOX);
@@ -53,6 +57,10 @@ int main()
 
 
     char x;
+    scanf("%s", &x);
+
+    ShowConsoleCursor(GetConsole());
+
     scanf("%s", &x);
     return 0;
 }
