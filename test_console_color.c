@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <windows.h>
+#include "characters.h"
+#include "console_colors.h"
+// #include "colors.h"
 
 // some code taken from:
 // https://stackoverflow.com/questions/20725769/change-background-color-of-console-output-in-c-and-c
@@ -20,6 +23,7 @@ int main()
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10 << 4 | 11);
     printf("%.2X", b << 4 | f);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x07);
+
     printf("\n");
 
     int i = 0;
@@ -29,10 +33,23 @@ int main()
         printf("NR.%2d\n", i);
     }
 
-    for (i = 0; i < 300; i++) 
+    for (i = 0; i < 256; i++) 
     {
         printf("NR.%3d = %2c\n", i, i);
     }
+
+    printf("%c\n", BLACK_BOX);
+    printf("%c\n", DARK_GRAY_BOX);
+    printf("%c\n", GRAY_BOX);
+    printf("%c\n", LIGHT_GRAY_BOX);
+
+    SetPrintingColor(LIGHT_YELLOW, RED);
+    printf("sample texxt");
+
+    printf("%c\n", BLACK_BOX);
+    printf("%c\n", DARK_GRAY_BOX);
+    printf("%c\n", GRAY_BOX);
+    printf("%c\n", LIGHT_GRAY_BOX);
 
 
     char x;
