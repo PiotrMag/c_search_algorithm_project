@@ -1,4 +1,17 @@
-struct Screen;
+struct Pixel
+{
+    char text;
+    int pos_x, pos_y;
+    int font_color, background_color;
+};
+
+struct Screen
+{
+    int width;
+    int height;
+    struct Pixel ** pixels;
+};
+
 typedef struct Screen *SCREEN;
 
 SCREEN CreateScreen(int width, int height);

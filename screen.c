@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-extern struct Pixel
+struct Pixel
 {
     char text;
     int pos_x, pos_y;
@@ -16,6 +16,24 @@ struct Screen
 
 typedef struct Screen *SCREEN;
 
+void ClearScreen(SCREEN scr)
+{
+    int width = scr->width;
+    int height = scr->height;
+    int i, j;
+    for (i = 0; i < height; i++)
+    {
+        for (j = 0; j < width; j++)
+        {
+            scr->pixels[i][j].text = ' ';
+            scr->pixels[i][j].font_color = 15;
+            scr->pixels[i][j].background_color = 0;
+            scr->pixels[i][j].pos_x = j;
+            scr->pixels[i][j].pos_y = i;
+        }
+    }
+}
+
 SCREEN CreateScreen(int width, int height)
 {
     struct Pixel **pixels;
@@ -29,18 +47,10 @@ SCREEN CreateScreen(int width, int height)
     screen->width = width;
     screen->height = height;
     screen->pixels = pixels;
+    
+    ClearScreen(screen);
+
     return screen;
-}
-
-void UpdatePixelText(SCREEN scr, int x, int y, char new_text)
-{
-    scr->pixels[y][x].text = new_text;
-}
-
-void UpdatePixelColor(SCREEN scr, int x, int y, int new_font_color, int new_background_color)
-{
-    scr->pixels[y][x].font_color = new_font_color;
-    scr->pixels[y][x].background_color = new_background_color;
 }
 
 void DeleteScreen(SCREEN scr)
@@ -53,4 +63,15 @@ void DeleteScreen(SCREEN scr)
     }
     free(scr->pixels);
     free(scr);
+}
+
+void UpdatePixelText(SCREEN scr, int x, int y, char new_text)
+{
+    scr->pixels[y][x].text = new_text;
+}
+
+void UpdatePixelColor(SCREEN scr, int x, int y, int new_font_color, int new_background_color)
+{
+    scr->pixels[y][x].font_color = new_font_color;
+    scr->pixels[y][x].background_color = new_background_color;
 }
