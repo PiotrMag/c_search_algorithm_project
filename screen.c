@@ -56,8 +56,8 @@ SCREEN CreateScreen(int width, int height)
 void DeleteScreen(SCREEN scr)
 {
     int i = 0;
-    int screen_width = scr->width;
-    for (i = 0; i < screen_width; ++i)
+    int screen_height = scr->height;
+    for (i = 0; i < screen_height; ++i)
     {
         free(scr->pixels[i]);
     }

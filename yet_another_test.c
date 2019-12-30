@@ -7,8 +7,8 @@
 #include "console.h"
 #include "console_cursor.h"
 
-#define WIDTH 25
-#define HEIGHT 15
+#define WIDTH 60
+#define HEIGHT 20
 
 int main()
 {
