@@ -39,6 +39,7 @@ int main()
     PutEnd(map, 9, 0);
 
     int i, j;
+    int was_inverted = 0;
     while(1)
     {
         for (i = 0; i < HEIGHT; i++)
@@ -48,9 +49,15 @@ int main()
                 CellType cell_type = map->cells[i][j].cell_type;
 
                 if (cell_type == Start)
-                    PrintToBuffer(buff, j, i, 'S', BLACK, RED);
+                    if (was_inverted)
+                        PrintToBuffer(buff, j, i, 'S', BLACK, RED);
+                    else
+                        PrintToBuffer(buff, j, i, 'S', RED, BLACK);
                 else if (cell_type == End)
-                    PrintToBuffer(buff, j, i, 'X', BLACK, BLUE);
+                    if (was_inverted)
+                        PrintToBuffer(buff, j, i, 'X', BLACK, BLUE);
+                    else
+                        PrintToBuffer(buff, j, i, 'X', BLUE, BLACK);                    
                 else if (cell_type == Road)
                     PrintToBuffer(buff, j, i, '.', WHITE, BLACK);
                 else if (cell_type == Wall)
@@ -58,6 +65,7 @@ int main()
             }
         }
         DrawBuffer(buff);
+        was_inverted = ++was_inverted % 2;
         wait(100);
     }
 
