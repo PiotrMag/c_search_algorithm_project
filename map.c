@@ -11,7 +11,7 @@ enum CellType
 {
     Road = 0,
     Wall = 1,
-    Origin = 2,
+    Start = 2,
     End = 3
 };
 
@@ -84,4 +84,19 @@ void DeleteMap(MAP map)
     }
     free(map->cells);
     free(map);
+}
+
+void PutWall(MAP map, int x, int y)
+{
+    map->cells[y][x].cell_type = Wall;
+}
+
+void PutStart(MAP map, int x, int y)
+{
+    map->cells[y][x].cell_type = Start;
+}
+
+void PutEnd(MAP map, int x, int y)
+{
+    map->cells[y][x].cell_type = End;
 }
