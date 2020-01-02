@@ -61,7 +61,7 @@ int main()
                 else if (cell_type == Road)
                     PrintToBuffer(buff, j, i, '.', WHITE, BLACK);
                 else if (cell_type == Wall)
-                    PrintToBuffer(buff, j, i, '#', BLACK, GRAY);
+                    PrintToBuffer(buff, j, i, LIGHT_GRAY_BOX, BLACK, GRAY);
             }
         }
         DrawBuffer(buff);
