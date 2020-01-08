@@ -91,6 +91,11 @@ void PutWall(MAP map, int x, int y)
     map->cells[y][x].cell_type = Wall;
 }
 
+void PutRoad(MAP map, int x, int y)
+{
+    map->cells[y][x].cell_type = Road;
+}
+
 void PutStart(MAP map, int x, int y)
 {
     map->cells[y][x].cell_type = Start;

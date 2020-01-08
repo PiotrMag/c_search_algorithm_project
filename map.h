@@ -37,6 +37,8 @@ typedef struct Map *MAP;
 void InitializeMap(MAP map);
 MAP CreateMap(int width, int height);
 void DeleteMap(MAP map);
+
 void PutWall(MAP map, int x, int y);
+void PutRoad(MAP map, int x, int y);
 void PutStart(MAP map, int x, int y);
 void PutEnd(MAP map, int x, int y);
