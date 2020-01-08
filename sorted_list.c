@@ -19,16 +19,14 @@ ELEMENT CreateListElement(int value, void *content)
     return new_element;
 }
 
-void DeleteListElement(ELEMENT element)
+void AddElement(SORTED_LIST *list, ELEMENT new_element)
 {
-    free(element->content);
-    free(element);
-}
-
-// TODO: write this function
-void AddElement(SORTED_LIST list, ELEMENT new_element)
-{
-    ELEMENT curr_element = (ELEMENT)list;
+    ELEMENT curr_element = (ELEMENT)(*list);
+    if (curr_element == NULL)
+    {
+        *list = new_element;
+        return;
+    }
     ELEMENT next_element = NULL;
     if (curr_element->next_element != NULL)
         next_element = curr_element->next_element;
@@ -43,6 +41,26 @@ void AddElement(SORTED_LIST list, ELEMENT new_element)
     new_element->next_element = next_element;
 }
 
-// TODO: write these functions
-ELEMENT GetFirstElementWithValue(int value);
-void RemoveFirstElementWithValue(int value);
+void* PopFirstElement(SORTED_LIST *list)
+{
+    if (*list == NULL)
+        return NULL;
+    ELEMENT element = (*list);
+    (*list) = (*list)->next_element;
+    void * content = element->content;
+    free(element);
+    return content;
+}
+
+void DeleteList(SORTED_LIST *list)
+{
+    void *popped_value;
+
+    while(1)
+    {
+        popped_value = PopFirstElement(list);
+        if (popped_value == NULL)
+            break;  
+        free(popped_value);
+    }
+}
