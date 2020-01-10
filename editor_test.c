@@ -8,6 +8,7 @@
 #include "console.h"
 #include "console_cursor.h"
 #include "map.h"
+#include "file_manager.h"
 
 #define WIDTH 20
 #define HEIGHT 20
@@ -107,6 +108,8 @@ int main()
                 else if (mode == 3)
                     PutWall(map, cur.posX, cur.posY);
             }
+            else if (c == 'q')
+                break;
             //TODO: add code for handling keys used to place things on map
         }
 
@@ -186,5 +189,16 @@ int main()
 
     DeleteMap(map);
     DeleteBuffer(buff);
+
+    WriteToFile("output.txt", "some text");
+    char *text = "";
+    text = ReadFromFile("output.txt");
+    MoveConsoleCursor(console, 0, HEIGHT + 1);
+    SetPrintingColor(WHITE, BLACK);
+    printf("%s", text);
+
+    char c;
+    scanf("%c", &c);
+
     return 0;
 }
