@@ -15,5 +15,5 @@ enum Colors
     SALMON = 12,
     VIOLET = 13,
     LIGHT_YELLOW = 14,
-    WHITE = 15
+    WHITE = 15,
 };

@@ -1,5 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+void ReshapeString(char **src, int new_size)
+{
+    char *tmp_str = (char*)malloc(new_size * sizeof(char));
+    int i;
+    for (i = 0; i < new_size && (*src)[i] != '\0'; i++)
+    {
+        tmp_str[i] = (*src)[i];
+    }
+    tmp_str[i] = '\0';
+    free(*src);
+    *src = tmp_str;
+}
 
 // function returns -1 if error occured
 // else it returns number of characters written
@@ -31,14 +45,19 @@ char* ReadFromFile(char *file_name)
     if (file == NULL)
         return NULL;
 
+    int str_size = 1;
     char *content = "";
     char char_to_append = fgetc(file);
 
     while(char_to_append != EOF)
     {
+        str_size += 1;
+        ReshapeString(&content, str_size);
         strncat(content, &char_to_append, 1);
         char_to_append = fgetc(file);
     }
+    // char_to_append = '\0';
+    // strncat(content, &char_to_append, 1);
 
     fclose(file);
     return content;

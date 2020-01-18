@@ -23,7 +23,8 @@ struct Cell
 {
     CellType cell_type;
     int pos_x, pos_y;
-    int weight;
+    long G_cost;
+    long H_cost;
     CellState cell_state;
     CELL origin;
 };
@@ -48,7 +49,8 @@ void InitializeMap(MAP map)
             map->cells[i][j].cell_type = Road;
             map->cells[i][j].pos_x = j;
             map->cells[i][j].pos_y = i;
-            map->cells[i][j].weight = 0;
+            map->cells[i][j].G_cost = 0;
+            map->cells[i][j].H_cost = 0;
             map->cells[i][j].cell_state = Undiscovered;
             map->cells[i][j].origin = NULL;
         }

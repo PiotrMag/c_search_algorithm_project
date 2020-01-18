@@ -6,14 +6,27 @@ typedef ELEMENT SORTED_LIST;
 struct Element
 {
     int value;
+    int help_value;
     void *content;
     ELEMENT next_element;
 };
 
-ELEMENT CreateListElement(int value, void *content)
+int GetListLength(SORTED_LIST list)
+{
+    int count = 0;
+    while (list != NULL)
+    {
+        count++;
+        list = list->next_element;
+    }
+    return count;
+}
+
+ELEMENT CreateListElement(int value, int help_value, void *content)
 {
     ELEMENT new_element = (ELEMENT)malloc(sizeof(struct Element));
     new_element->value = value;
+    new_element->help_value = help_value;
     new_element->content = content;
     new_element->next_element = NULL;
     return new_element;
@@ -27,14 +40,33 @@ void AddElement(SORTED_LIST *list, ELEMENT new_element)
         *list = new_element;
         return;
     }
-    ELEMENT next_element = NULL;
-    if (curr_element->next_element != NULL)
-        next_element = curr_element->next_element;
+    if (curr_element->value > new_element->value)
+    {
+        new_element->next_element = curr_element;
+        *list = new_element;
+        return;
+    }
+    if (curr_element->value == new_element->value && curr_element->help_value > new_element->help_value)
+    {
+        new_element->next_element = curr_element;
+        *list = new_element;
+        return;
+    }
+    ELEMENT next_element = curr_element->next_element;
 
     while(next_element != NULL && new_element->value > next_element->value)
     {
         curr_element = next_element;
         next_element = curr_element->next_element;
+    }
+    if (next_element != NULL)
+    {
+        if (curr_element->value == next_element->value)
+            while(next_element != NULL && new_element->help_value > next_element->help_value)
+            {
+                curr_element = next_element;
+                next_element = curr_element->next_element;
+            }
     }
 
     curr_element->next_element = new_element;

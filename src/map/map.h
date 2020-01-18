@@ -21,7 +21,8 @@ struct Cell
 {
     CellType cell_type;
     int pos_x, pos_y;
-    int weight;
+    long G_cost;
+    long H_cost;
     CellState cell_state;
     CELL origin;
 };

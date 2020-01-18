@@ -1,5 +1,5 @@
 #include "screen.h"
-#include "console.h"
+#include "../console/console.h"
 
 struct Buffer
 {

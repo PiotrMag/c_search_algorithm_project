@@ -15,7 +15,7 @@ void MoveConsoleCursor(HANDLE console, int new_x, int new_y)
     SetConsoleCursorPosition(console, coordCur);
 }
 
-int HideConsoleCursor(HANDLE console)
+void HideConsoleCursor(HANDLE console)
 {
     CONSOLE_CURSOR_INFO cursorInfo;
     GetConsoleCursorInfo(console, &cursorInfo);
@@ -24,7 +24,7 @@ int HideConsoleCursor(HANDLE console)
     SetConsoleCursorInfo(console, &cursorInfo);
 }
 
-int ShowConsoleCursor(HANDLE console)
+void ShowConsoleCursor(HANDLE console)
 {
     CONSOLE_CURSOR_INFO cursorInfo;
     GetConsoleCursorInfo(console, &cursorInfo);

@@ -1,9 +1,10 @@
 #include <windows.h>
 #include <stdio.h>
-#include "screen.h"
-#include "console_cursor.h"
-#include "console_colors.h"
-#include "console.h"
+#include "../buffer/screen.h"
+#include "../console/console_cursor.h"
+#include "../console/console_colors.h"
+#include "../console/console.h"
+#include "../misc/colors.h"
 
 struct Buffer
 {
@@ -23,7 +24,7 @@ BUFFER CreateBuffer(int width, int height)
     buff->height = height;
     buff->default_font_color = WHITE;
     buff->default_background_color = BLACK;
-    buff->console = GetConsole();
+    buff->console = (HANDLE) GetConsole();
     if (buff->console == NULL)
     {
         printf("\n\nError: Console handle NULL!");
